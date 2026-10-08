@@ -1,0 +1,125 @@
+name: ecommerce-cloud
+
+services:
+  ecommerce-postgres:
+    image: postgres:16-alpine
+    container_name: ecommerce_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ecom_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ecom_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-ecommerce_db}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_ecom_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ecom_user} -d ${POSTGRES_DB:-ecommerce_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecom-net
+
+  ecommerce-mongo:
+    image: mongo:7-jammy
+    container_name: ecommerce_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_ecom_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecom-net
+
+  ecommerce-redis:
+    image: redis:7-alpine
+    container_name: ecommerce_redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - ecom-net
+
+  catalog-service:
+    build:
+      context: ./services/catalog-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_catalog_service
+    restart: unless-stopped
+    environment:
+      PORT: "8001"
+      MONGO_URI: mongodb://ecommerce-mongo:27017/catalog
+      REDIS_HOST: ecommerce-redis
+      REDIS_PORT: "6379"
+    ports:
+      - "8001:8001"
+    depends_on:
+      ecommerce-mongo:
+        condition: service_healthy
+      ecommerce-redis:
+        condition: service_healthy
+    networks:
+      - ecom-net
+
+  order-service:
+    build:
+      context: ./services/order-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_order_service
+    restart: unless-stopped
+    environment:
+      DB_HOST: ecommerce-postgres
+      DB_PORT: "5432"
+      DB_USER: ${POSTGRES_USER:-ecom_user}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-ecom_pass}
+      DB_NAME: ${POSTGRES_DB:-ecommerce_db}
+      CATALOG_HOST: catalog-service
+      CATALOG_PORT: "8001"
+    ports:
+      - "8002:8002"
+    depends_on:
+      ecommerce-postgres:
+        condition: service_healthy
+      catalog-service:
+        condition: service_healthy
+    networks:
+      - ecom-net
+
+  storefront-gateway:
+    build:
+      context: ./services/storefront-gateway
+      dockerfile: Dockerfile
+    container_name: ecommerce_storefront_gateway
+    restart: unless-stopped
+    environment:
+      PORT: "8081"
+      CATALOG_SERVICE_URL: http://catalog-service:8001
+      ORDER_SERVICE_URL: http://order-service:8002
+    ports:
+      - "8081:8081"
+    depends_on:
+      catalog-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+    networks:
+      - ecom-net
+
+volumes:
+  pg_ecom_data:
+  mongo_ecom_data:
+
+networks:
+  ecom-net:
+    driver: bridge
