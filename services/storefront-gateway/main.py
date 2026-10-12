@@ -17,14 +17,20 @@ app.add_middleware(
 CATALOG_URL = os.getenv("CATALOG_SERVICE_URL", "http://catalog-service:8001")
 ORDER_URL = os.getenv("ORDER_SERVICE_URL", "http://order-service:8002")
 
-# Read storefront HTML
-with open("storefront.html", "r", encoding="utf-8") as f:
-    STOREFRONT_HTML = f.read()
+# Load storefront HTML (dynamically when possible)
+STOREFRONT_FILE = os.path.join(os.path.dirname(__file__), "storefront.html")
 
 @app.get("/", response_class=HTMLResponse)
 @app.get("/dashboard", response_class=HTMLResponse)
 def serve_storefront():
-    return HTMLResponse(content=STOREFRONT_HTML, status_code=200)
+    try:
+        with open(STOREFRONT_FILE, "r", encoding="utf-8") as f:
+            return HTMLResponse(content=f.read(), status_code=200)
+    except Exception:
+        if os.path.exists("storefront.html"):
+            with open("storefront.html", "r", encoding="utf-8") as f:
+                return HTMLResponse(content=f.read(), status_code=200)
+        return HTMLResponse(content="<h1>Storefront not found</h1>", status_code=404)
 
 @app.get("/health")
 async def health():
