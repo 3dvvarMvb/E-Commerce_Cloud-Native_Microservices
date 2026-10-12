@@ -1,4 +1,4 @@
-# Project 2: E-Commerce Cloud-Native Microservices
+# E-Commerce Cloud-Native Microservices
 
 Plataforma distribuida de comercio electrónico a gran escala que combina Java 21 (Spring Boot 3) y Python (FastAPI) con persistencia políglota (MongoDB y PostgreSQL) y caché en Redis.
 
