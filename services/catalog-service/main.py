@@ -268,13 +268,23 @@ def get_product(product_id: str):
 @app.post("/api/v1/products", status_code=status.HTTP_201_CREATED)
 def create_product(product: Product):
     doc = product.model_dump()
+    doc.pop("id", None)
     if products_col is not None:
         try:
+            existing = products_col.find_one({"sku": doc["sku"]})
+            if existing:
+                raise HTTPException(status_code=400, detail=f"El SKU '{doc['sku']}' ya se encuentra registrado.")
             res = products_col.insert_one(doc)
             doc["id"] = str(res.inserted_id)
+            doc.pop("_id", None)
+        except HTTPException:
+            raise
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
     else:
+        for p in SEED_PRODUCTS:
+            if p["sku"] == doc["sku"]:
+                raise HTTPException(status_code=400, detail=f"El SKU '{doc['sku']}' ya existe en el catálogo.")
         doc["id"] = doc["sku"]
         SEED_PRODUCTS.append(doc)
 

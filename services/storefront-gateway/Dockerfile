@@ -12,6 +12,7 @@ RUN useradd -m -u 1000 appuser
 COPY --from=builder /root/.local /home/appuser/.local
 COPY main.py .
 COPY storefront.html .
+COPY admin.html .
 
 USER appuser
 ENV PATH=/home/appuser/.local/bin:$PATH

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA TECH · Cloud-Native Storefront Pro</title>
+  <title>AURA TECH · Tienda Oficial de Hardware & Dispositivos Pro</title>
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -21,39 +21,9 @@
           },
           colors: {
             brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              apple: '#0071e3',
-            },
-            surface: {
-              dark: '#08090d',
-              card: '#11131a',
-              cardHover: '#161922',
-              border: 'rgba(255, 255, 255, 0.08)',
-              borderFocus: 'rgba(59, 130, 246, 0.5)',
-            }
-          },
-          animation: {
-            'pulse-subtle': 'pulseSubtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'bounce-cart': 'bounceCart 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            'scale-up': 'scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-          },
-          keyframes: {
-            pulseSubtle: {
-              '0%, 100%': { opacity: '1' },
-              '50%': { opacity: '0.4' },
-            },
-            bounceCart: {
-              '0%': { transform: 'scale(1)' },
-              '40%': { transform: 'scale(1.35)' },
-              '70%': { transform: 'scale(0.92)' },
-              '100%': { transform: 'scale(1)' },
-            },
-            scaleUp: {
-              '0%': { opacity: '0', transform: 'scale(0.96)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
+              400: '#38bdf8',
+              500: '#0071e3',
+              600: '#005bb5',
             }
           }
         }
@@ -61,47 +31,89 @@
     }
   </script>
   <style>
-    /* Custom Apple & Shopify Polish */
+    :root {
+      --bg-canvas: #06070a;
+      --bg-surface: #0d0f15;
+      --bg-elevated: #141722;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      --border-focus: #0071e3;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #0071e3;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+    }
+
     body {
-      background-color: #07080c;
-      color: #f3f4f6;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-size: 0.8125rem;
+      line-height: 1.5;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    
-    /* Glassmorphism Classes */
-    .glass-nav {
-      background: rgba(8, 9, 13, 0.82);
+
+    /* Distinct Typography Scale (>= 1.25x step ratio) */
+    h1 {
+      font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 1.35rem;
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+    h4 {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    /* Navigation & Surfaces */
+    .app-header {
+      background: rgba(6, 7, 10, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .glass-card {
-      background: linear-gradient(180deg, rgba(22, 25, 35, 0.7) 0%, rgba(13, 15, 22, 0.85) 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .glass-card-hover {
+    .surface-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 1.25rem;
+    }
+
+    .surface-panel-hover {
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-card-hover:hover {
+    .surface-panel-hover:hover {
+      border-color: var(--border-hover);
       transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px -10px rgba(59, 130, 246, 0.15);
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
     }
 
-    .glass-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+    .pill-filter {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
       transition: all 0.2s ease;
     }
-    .glass-pill:hover, .glass-pill.active {
-      background: rgba(255, 255, 255, 0.12);
+    .pill-filter:hover, .pill-filter.active {
+      background-color: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
     }
 
     /* Custom Scrollbar */
@@ -110,21 +122,21 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #08090d;
+      background: var(--bg-canvas);
     }
     ::-webkit-scrollbar-thumb {
-      background: #1f2430;
+      background: #1e2230;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #2e3547;
     }
 
-    /* Drawer Transition */
-    .drawer-backdrop {
+    /* Drawer & Modal Transitions */
+    .drawer-scrim {
       transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .drawer-panel {
+    .drawer-content {
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -135,71 +147,83 @@
       pointer-events: none;
       transition: all 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+
+    /* Motion Sensitivity */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .flying-chip {
+        display: none !important;
+      }
+      .drawer-content {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
   <!-- ======================================================== -->
-  <!-- NAVIGATION HEADER (APPLE STYLE GLASSMORPHIC) -->
+  <!-- NAVIGATION HEADER -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-40 glass-nav transition-all duration-200">
+  <header class="sticky top-0 z-40 app-header" role="banner">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
       
-      <!-- Logo & Brand -->
+      <!-- Brand & Logo -->
       <div class="flex items-center gap-3">
-        <a href="/" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 via-blue-500 to-indigo-400 p-[1px] shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
-            <div class="w-full h-full bg-[#0b0c12] rounded-[11px] flex items-center justify-center">
-              <!-- SVG Tech Logo -->
-              <svg class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
+        <a href="/" class="flex items-center gap-2.5 group" aria-label="AURA TECH Página de inicio">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-brand-500 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
           </div>
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-base font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">AURA<span class="text-blue-400">.</span>TECH</span>
-              <span class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20">Cloud-Native</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-base font-extrabold tracking-tight text-white">AURA<span class="text-blue-400">.</span>TECH</span>
+              <span class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20">Tienda Oficial</span>
             </div>
-            <p class="text-[10px] text-slate-400 leading-none">Shopify & Apple E-Commerce Experience</p>
+            <p class="text-[11px] text-slate-400 leading-none">Hardware de Precisión & Accesorios Pro</p>
           </div>
         </a>
       </div>
 
-      <!-- Microservices Status Badges -->
-      <div class="hidden lg:flex items-center gap-2.5 text-[11px]">
-        <div id="catalogBadge" class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-white/5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
-          <span class="text-slate-400">Catálogo: <strong class="text-slate-200 font-medium">FastAPI · Mongo</strong></span>
-        </div>
-        <div id="orderBadge" class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-white/5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
-          <span class="text-slate-400">Órdenes: <strong class="text-slate-200 font-medium">Spring Boot 3 · Postgres</strong></span>
-        </div>
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-white/5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
-          <span class="text-slate-400">Caché: <strong class="text-slate-200 font-medium">Redis 7</strong></span>
-        </div>
-      </div>
-
-      <!-- Actions: Tracking & Slide-Over Cart Trigger -->
-      <div class="flex items-center gap-3">
-        <!-- Quick Link to Order Tracking -->
-        <button onclick="scrollToTracking()" class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/50 hover:bg-slate-800 border border-white/5 transition-all">
-          <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
-          <span>Seguimiento de Envíos</span>
-        </button>
-
-        <!-- Slide-over Cart Button with microinteraction counter -->
-        <button id="cartTriggerBtn" onclick="toggleCartDrawer(true)" class="relative flex items-center gap-2.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs shadow-lg shadow-blue-600/25 active:scale-95 transition-all duration-200 group">
-          <svg class="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <!-- Quick Commercial Nav Links -->
+      <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="#catalogSection" class="hover:text-white transition-colors">Productos</a>
+        <a href="#benefitsSection" class="hover:text-white transition-colors">Beneficios</a>
+        <button onclick="handleMyOrdersClick()" class="hover:text-white transition-colors flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          <span class="font-semibold tracking-wide">Bolsa</span>
-          <!-- Dynamic Count Pill -->
-          <span id="cartCountBadge" class="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-white text-brand-600 font-bold text-[11px] font-mono transition-transform duration-200">
+          <span>Mis Compras</span>
+        </button>
+        <a href="/admin" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-colors" title="Panel de Administración y Operaciones">
+          <svg class="w-3.5 h-3.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>Admin Ops</span>
+        </a>
+      </nav>
+
+      <!-- Account Session & Slide-over Cart Trigger -->
+      <div class="flex items-center gap-3">
+        
+        <!-- User Account Widget (Mercado Libre Style) -->
+        <div id="userAccountContainer" class="relative">
+          <!-- Injected via JavaScript (Guest button or Logged in User Pill) -->
+        </div>
+
+        <!-- Cart Trigger Button -->
+        <button id="cartTriggerBtn" onclick="toggleCartDrawer(true)" class="relative flex items-center gap-2 px-3.5 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs border border-blue-400/20 shadow-md shadow-blue-500/20 active:scale-95 transition-all" aria-label="Abrir bolsa de compras">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="hidden sm:inline font-semibold">Bolsa</span>
+          <span id="cartCountBadge" class="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-white text-brand-500 font-bold text-[11px] font-mono">
             0
           </span>
         </button>
@@ -209,36 +233,31 @@
   </header>
 
   <!-- ======================================================== -->
-  <!-- HERO BANNER (APPLE STYLE TECH SHOWCASE) -->
+  <!-- HERO BANNER (COMMERCIAL APPLE/SHOPIFY FLAGSHIP) -->
   <!-- ======================================================== -->
-  <section class="relative overflow-hidden border-b border-white/[0.06] bg-gradient-to-b from-[#0e1017] via-[#08090d] to-[#07080c] py-12 lg:py-16">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-blue-600/15 via-indigo-500/20 to-purple-600/15 blur-[120px] pointer-events-none rounded-full"></div>
-    
+  <section class="border-b border-white/[0.06] bg-gradient-to-b from-[#0c0e15] via-[#090b10] to-[#06070a] py-14 lg:py-20 relative overflow-hidden" aria-labelledby="heroTitle">
+    <!-- Ambient light glow -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-gradient-to-r from-blue-600/15 via-indigo-500/20 to-purple-500/15 blur-[100px] pointer-events-none rounded-full" aria-hidden="true"></div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center max-w-3xl mx-auto">
-        <!-- Pill tag -->
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-medium text-blue-400 mb-4 backdrop-blur-md">
-          <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-          Nueva Generación de Hardware para Creadores Pro
-        </div>
-        
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
-          Potencia Extrema. <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">Microservicios Cloud.</span>
+        <h1 id="heroTitle" class="text-white mb-4">
+          Tecnología Extraordinaria. <span class="text-blue-400">Diseñada para Superar tus Límites.</span>
         </h1>
         
-        <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
-          Catálogo ultrarrápido respaldado por <span class="text-slate-200 font-medium">MongoDB + Redis Cache-Aside</span> y transacciones distribuidas con patrón Saga mediante <span class="text-slate-200 font-medium">Spring Boot 3 en PostgreSQL</span>.
+        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+          Estaciones de trabajo de última generación, monitores Retina panorámicos y periféricos de grado profesional. Disfruta de hasta <strong class="text-white font-semibold">12 cuotas sin interés</strong> y <strong class="text-white font-semibold">envío express gratuito</strong> en 24 horas.
         </p>
 
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          <button onclick="scrollToCatalog()" class="px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-semibold text-xs tracking-wide shadow-xl shadow-white/5 active:scale-95 transition-all">
-            Explorar Catálogo Pro
-          </button>
-          <button onclick="simulateFastOrder()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs border border-white/10 active:scale-95 transition-all flex items-center gap-2">
-            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <div class="flex flex-wrap items-center justify-center gap-3.5">
+          <a href="#catalogSection" class="px-6 py-3 rounded-xl bg-white text-slate-950 hover:bg-slate-100 font-bold text-xs tracking-wide shadow-xl shadow-white/5 active:scale-95 transition-all">
+            Explorar Colección Pro
+          </a>
+          <button onclick="scrollToTracking()" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs border border-white/10 active:scale-95 transition-all flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
             </svg>
-            Simular Compra Exprés
+            Rastrear un Pedido
           </button>
         </div>
       </div>
@@ -246,82 +265,83 @@
   </section>
 
   <!-- ======================================================== -->
-  <!-- TELEMETRY STATS BAR (APPLE BENTO METRICS) -->
+  <!-- TRUST & E-COMMERCE BENEFITS BAR -->
   <!-- ======================================================== -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20 mb-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+  <section id="benefitsSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20 mb-8" aria-label="Beneficios de compra">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       
-      <!-- Metric 1: Redis Cache Hits -->
-      <div class="glass-card p-4 rounded-2xl relative overflow-hidden group">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Redis Cache Hits</span>
-          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
+      <div class="surface-panel p-4 rounded-xl flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0" aria-hidden="true">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
         </div>
-        <div id="statCacheHits" class="text-2xl font-bold font-mono text-emerald-400">0</div>
-        <div class="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
-          <svg class="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-          Latencia sub-milisegundo
+        <div>
+          <div class="text-xs font-bold text-white">Envío Express 24h</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Gratis en compras $+200</div>
         </div>
       </div>
 
-      <!-- Metric 2: MongoDB Queries -->
-      <div class="glass-card p-4 rounded-2xl relative overflow-hidden group">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Lecturas Mongo</span>
-          <span class="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.8)]"></span>
+      <div class="surface-panel p-4 rounded-xl flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0" aria-hidden="true">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
         </div>
-        <div id="statMongoQueries" class="text-2xl font-bold font-mono text-blue-400">0</div>
-        <div class="text-[10px] text-slate-400 mt-0.5">Consultas NoSQL resilientes</div>
+        <div>
+          <div class="text-xs font-bold text-white">Garantía Oficial 2 Años</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Soporte y cambio directo</div>
+        </div>
       </div>
 
-      <!-- Metric 3: PostgreSQL Spring Boot Orders -->
-      <div class="glass-card p-4 rounded-2xl relative overflow-hidden group">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Órdenes Spring Boot</span>
-          <span class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)]"></span>
+      <div class="surface-panel p-4 rounded-xl flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0" aria-hidden="true">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
         </div>
-        <div id="statTotalOrders" class="text-2xl font-bold font-mono text-amber-400">0</div>
-        <div class="text-[10px] text-slate-400 mt-0.5">Transacciones ACID en Postgres</div>
+        <div>
+          <div class="text-xs font-bold text-white">Hasta 12 Cuotas</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Sin interés con tarjetas</div>
+        </div>
       </div>
 
-      <!-- Metric 4: Total Revenue -->
-      <div class="glass-card p-4 rounded-2xl relative overflow-hidden group">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Facturación Bruta</span>
-          <span class="w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(192,132,252,0.8)]"></span>
+      <div class="surface-panel p-4 rounded-xl flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0" aria-hidden="true">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
         </div>
-        <div id="statTotalRevenue" class="text-2xl font-bold font-mono text-white">$0.00</div>
-        <div class="text-[10px] text-slate-400 mt-0.5">Ingresos totales procesados</div>
+        <div>
+          <div class="text-xs font-bold text-white">Devolución 30 Días</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Sin preguntas ni demoras</div>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- ======================================================== -->
-  <!-- MAIN STOREFRONT CONTAINER -->
+  <!-- MAIN STOREFRONT CONTENT -->
   <!-- ======================================================== -->
   <main id="catalogSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow w-full">
 
-    <!-- ======================================================== -->
-    <!-- STICKY FILTER & SEARCH TOOLBAR -->
-    <!-- ======================================================== -->
-    <div class="glass-card rounded-2xl p-3 sm:p-4 mb-8 sticky top-20 z-30 shadow-2xl shadow-black/40">
+    <!-- Sticky Filter & Search Toolbar -->
+    <div class="surface-panel p-3 sm:p-4 mb-8 sticky top-20 z-30 shadow-md shadow-black/40">
       <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
         
-        <!-- Category Filter Pills with counts -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none" id="categoryPills">
-          <button onclick="setCategory('')" class="glass-pill active px-3.5 py-1.5 rounded-xl text-xs font-medium text-white flex items-center gap-1.5 whitespace-nowrap">
+        <!-- Category Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0" id="categoryPills" role="tablist" aria-label="Filtrar por categoría">
+          <button onclick="setCategory('')" class="pill-filter active px-3.5 py-1.5 rounded-xl text-xs font-medium text-white flex items-center gap-1.5 whitespace-nowrap" role="tab" aria-selected="true">
             <span>Todos</span>
             <span id="pillCountAll" class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/20 font-mono">6</span>
           </button>
-          <!-- Dynamic category pills injected here -->
         </div>
 
-        <!-- Controls: Search & Sort & In-Stock Only -->
+        <!-- Search, Sort & Stock Toggle -->
         <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
-          <!-- Search input with shortcut hint -->
           <div class="relative flex-grow sm:w-64">
-            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input 
@@ -329,24 +349,23 @@
               id="searchInput" 
               oninput="handleSearch(event)" 
               placeholder="Buscar modelos, sku..." 
-              class="w-full pl-9 pr-14 py-2 bg-slate-900/90 border border-white/10 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+              aria-label="Buscar productos en el catálogo"
+              class="w-full pl-9 pr-14 py-2 bg-slate-900 border border-white/10 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition-colors"
             />
-            <span class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-white/5 border border-white/10 pointer-events-none">
+            <span class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-white/5 border border-white/10 pointer-events-none" aria-hidden="true">
               ⌘K
             </span>
           </div>
 
-          <!-- Sort Select -->
-          <select id="sortSelect" onchange="handleSort(this.value)" class="bg-slate-900/90 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-blue-500 transition-colors cursor-pointer">
+          <select id="sortSelect" onchange="handleSort(this.value)" aria-label="Ordenar productos" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-blue-500 transition-colors cursor-pointer">
             <option value="featured">Destacados</option>
             <option value="price-asc">Precio: Menor a Mayor</option>
             <option value="price-desc">Precio: Mayor a Menor</option>
             <option value="stock-desc">Mayor Stock</option>
           </select>
 
-          <!-- Toggle: Solo en Stock -->
-          <label class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/60 border border-white/10 text-xs text-slate-300 cursor-pointer select-none hover:bg-slate-900 transition-colors">
-            <input type="checkbox" id="stockOnlyCheckbox" onchange="toggleStockOnly(this.checked)" class="w-3.5 h-3.5 rounded bg-slate-800 border-white/20 text-brand-600 focus:ring-0">
+          <label class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-xs text-slate-300 cursor-pointer select-none hover:bg-slate-800 transition-colors">
+            <input type="checkbox" id="stockOnlyCheckbox" onchange="toggleStockOnly(this.checked)" class="w-4 h-4 rounded bg-slate-800 border-white/20 text-brand-500 focus:ring-0">
             <span class="whitespace-nowrap text-[11px]">Solo en stock</span>
           </label>
         </div>
@@ -354,117 +373,88 @@
       </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- PRODUCT CATALOG GRID WITH DYNAMIC STOCK BADGES -->
-    <!-- ======================================================== -->
+    <!-- Product Grid -->
     <div class="mb-14">
       <div class="flex items-center justify-between mb-5">
         <div>
-          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-            Dispositivos & Accesorios Pro
-          </h2>
-          <p class="text-xs text-slate-400 mt-0.5" id="catalogResultsCount">Mostrando productos disponibles en catálogo</p>
+          <h2 class="text-white">Dispositivos & Accesorios Pro</h2>
+          <p class="text-xs text-slate-400 mt-0.5" id="catalogResultsCount">Mostrando productos disponibles en tienda</p>
         </div>
-        <button onclick="refreshCatalog()" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-colors">
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+        <button onclick="refreshCatalog()" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-colors" aria-label="Sincronizar catálogo con el backend">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
           Sincronizar
         </button>
       </div>
 
-      <!-- Grid Container -->
       <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered via JS -->
+        <!-- Injected via JavaScript -->
       </div>
     </div>
 
     <!-- ======================================================== -->
-    <!-- VISUAL ORDER STATUS TIMELINE (SEGUIMIENTO INTERACTIVO) -->
+    <!-- VISUAL ORDER TRACKING SECTION (MIS COMPRAS / LOGÍSTICA) -->
     <!-- ======================================================== -->
-    <section id="trackingSection" class="glass-card rounded-3xl p-6 sm:p-8 mb-14 border border-white/10 shadow-2xl relative overflow-hidden">
-      <!-- Glow ambient background -->
-      <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <section id="trackingSection" class="surface-panel p-6 sm:p-8 mb-14" aria-labelledby="trackingSectionTitle">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/[0.08]">
         <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md text-[10px] font-mono tracking-wider uppercase bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-2">
-            Arquitectura Saga & Eventos
-          </div>
-          <h3 class="text-xl font-bold tracking-tight text-white flex items-center gap-2.5">
-            <svg class="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <h3 id="trackingSectionTitle" class="text-white flex items-center gap-2.5">
+            <svg class="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Timeline Visual de Estado de Pedidos
+            Seguimiento de Envíos & Mis Compras
           </h3>
           <p class="text-xs text-slate-400 mt-1">
-            Visualizador en tiempo real del ciclo transaccional: Spring Boot 3 JPA → Mongo Stock Decr → Courier Logistics.
+            Consulta el estado de despacho y trazabilidad de entrega de tus compras en tiempo real.
           </p>
         </div>
 
-        <!-- Active Tracking Order Badge & Selector -->
-        <div class="flex items-center gap-3">
-          <div class="text-right">
-            <span class="text-[10px] text-slate-400 block">Orden Seleccionada:</span>
-            <span id="activeTrackingId" class="font-mono text-xs font-bold text-white bg-slate-900/80 px-2.5 py-1 rounded-lg border border-white/10 inline-block">
-              ORD-DEMO-991
-            </span>
-          </div>
-          <button onclick="advanceActiveOrderStatus()" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-lg shadow-blue-600/20 active:scale-95">
-            <span>Avanzar Estado</span>
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-          </button>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-blue-500/10 border border-blue-500/20 text-blue-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+            Trazabilidad en tiempo real
+          </span>
         </div>
       </div>
 
-      <!-- Timeline Stepper Component -->
-      <div class="py-4">
-        <!-- Progress bar line -->
+      <!-- Tracking Timeline Visual Stepper (Read-Only Consumer View) -->
+      <div id="trackingTimelineContainer" class="py-4">
+        <!-- Progress Bar -->
         <div class="relative mb-10">
-          <div class="absolute top-1/2 left-0 w-full -translate-y-1/2 h-1 bg-slate-800 rounded-full"></div>
-          <div id="timelineProgressBar" class="absolute top-1/2 left-0 -translate-y-1/2 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-emerald-400 rounded-full transition-all duration-500 w-[25%] shadow-[0_0_12px_rgba(59,130,246,0.6)]"></div>
+          <div class="absolute top-1/2 left-0 w-full -translate-y-1/2 h-1 bg-slate-800 rounded-full" aria-hidden="true"></div>
+          <div id="timelineProgressBar" class="absolute top-1/2 left-0 -translate-y-1/2 h-1 bg-blue-500 rounded-full transition-all duration-300 w-[25%]" aria-hidden="true"></div>
 
-          <!-- Step Nodes -->
-          <div class="relative flex justify-between">
+          <!-- Step Nodes (Informational only) -->
+          <div class="relative flex justify-between" role="list" aria-label="Etapas del despacho">
             
-            <!-- Step 1: CONFIRMED -->
-            <div class="flex flex-col items-center group cursor-pointer" onclick="setActiveStep(1)">
-              <div id="stepNode1" class="w-10 h-10 rounded-full bg-blue-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-blue-500/30 transition-transform duration-300">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <div class="flex flex-col items-center group" role="listitem">
+              <div id="stepNode1" class="w-10 h-10 rounded-full bg-blue-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold transition-transform">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
               </div>
-              <span class="text-xs font-semibold text-white mt-3 text-center">Confirmado</span>
-              <span class="text-[10px] text-slate-400 font-mono">Spring Boot JPA</span>
+              <span class="text-xs font-semibold text-white mt-3 text-center">Pago Confirmado</span>
+              <span class="text-[10px] text-slate-400 font-mono">Factura Emitida</span>
             </div>
 
-            <!-- Step 2: INVENTORY ASSIGNED -->
-            <div class="flex flex-col items-center group cursor-pointer" onclick="setActiveStep(2)">
-              <div id="stepNode2" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform duration-300">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+            <div class="flex flex-col items-center group" role="listitem">
+              <div id="stepNode2" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
               </div>
-              <span class="text-xs font-semibold text-slate-300 mt-3 text-center">Inventario</span>
-              <span class="text-[10px] text-slate-400 font-mono">Mongo + Redis</span>
+              <span class="text-xs font-semibold text-slate-300 mt-3 text-center">En Preparación</span>
+              <span class="text-[10px] text-slate-400 font-mono">Control de Calidad</span>
             </div>
 
-            <!-- Step 3: PREPARING -->
-            <div class="flex flex-col items-center group cursor-pointer" onclick="setActiveStep(3)">
-              <div id="stepNode3" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform duration-300">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+            <div class="flex flex-col items-center group" role="listitem">
+              <div id="stepNode3" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
               </div>
-              <span class="text-xs font-semibold text-slate-300 mt-3 text-center">Preparación</span>
-              <span class="text-[10px] text-slate-400 font-mono">Hub Logístico</span>
-            </div>
-
-            <!-- Step 4: SHIPPED -->
-            <div class="flex flex-col items-center group cursor-pointer" onclick="setActiveStep(4)">
-              <div id="stepNode4" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform duration-300">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
-              </div>
-              <span class="text-xs font-semibold text-slate-300 mt-3 text-center">En Tránsito</span>
+              <span class="text-xs font-semibold text-slate-300 mt-3 text-center">En Camino</span>
               <span class="text-[10px] text-slate-400 font-mono">Courier Express</span>
             </div>
 
-            <!-- Step 5: DELIVERED -->
-            <div class="flex flex-col items-center group cursor-pointer" onclick="setActiveStep(5)">
-              <div id="stepNode5" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform duration-300">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+            <div class="flex flex-col items-center group" role="listitem">
+              <div id="stepNode4" class="w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
               </div>
               <span class="text-xs font-semibold text-slate-300 mt-3 text-center">Entregado</span>
               <span class="text-[10px] text-slate-400 font-mono">Destino Final</span>
@@ -473,52 +463,56 @@
           </div>
         </div>
 
-        <!-- Step Details Card -->
-        <div id="stepDetailsBox" class="p-4 rounded-2xl bg-slate-900/60 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <!-- Step Details Real Courier Box -->
+        <div id="stepDetailsBox" class="p-4 rounded-xl bg-slate-900 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div class="text-xs font-bold text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-              <span id="stepDetailTitle">Paso 1 de 5: Pedido Confirmado en Base de Datos</span>
+              <span class="w-2 h-2 rounded-full bg-blue-400" aria-hidden="true"></span>
+              <span id="stepDetailTitle">Paso 1 de 4: Pago Confirmado y Orden Procesada</span>
             </div>
-            <p id="stepDetailDesc" class="text-[11px] text-slate-400 mt-1">
-              La orden fue recibida por la pasarela Spring Boot 3 y confirmada en la base de datos relacional PostgreSQL con bloqueo de transacciones.
+            <p id="stepDetailDesc" class="text-xs text-slate-400 mt-1">
+              Tu compra ha sido verificada con éxito. El comprobante y la garantía oficial han sido emitidos a tu correo.
             </p>
           </div>
           <div class="text-right whitespace-nowrap">
-            <span class="text-[10px] text-slate-400 block font-mono">Código Carrier:</span>
-            <span id="stepCarrierCode" class="text-xs font-mono font-bold text-blue-400">CARRIER-EXP-99214-US</span>
+            <span class="text-[11px] text-slate-400 block font-mono">Guía DHL Express:</span>
+            <span id="stepCarrierCode" class="text-xs font-mono font-bold text-blue-400">DHL-EXP-94812-CL</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Orders History Table -->
+      <!-- Orders History Table (Filtered by Active User) -->
       <div class="mt-8 pt-6 border-t border-white/[0.08]">
         <div class="flex items-center justify-between mb-4">
-          <h4 class="text-sm font-bold text-white flex items-center gap-2">
-            <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
-            Registro de Órdenes en Base de Datos (Spring Boot JPA)
-          </h4>
-          <button onclick="loadOrders()" class="text-[11px] text-slate-400 hover:text-white flex items-center gap-1">
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+          <div>
+            <h4 class="text-white flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+              Mis Compras Recientes
+            </h4>
+            <p class="text-[11px] text-slate-400" id="ordersFilterNotice">Mostrando compras asociadas a tu cuenta</p>
+          </div>
+
+          <button onclick="loadOrders()" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-colors" aria-label="Refrescar lista de pedidos">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             Refrescar
           </button>
         </div>
 
-        <div class="overflow-x-auto rounded-xl border border-white/5 bg-slate-950/40">
+        <div class="overflow-x-auto rounded-xl border border-white/5 bg-slate-950">
           <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-900/60 text-slate-400 uppercase text-[10px] font-semibold tracking-wider">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] font-semibold tracking-wider">
               <tr>
-                <th class="py-3 px-3.5">ID Orden</th>
-                <th class="py-3 px-3.5">Cliente</th>
-                <th class="py-3 px-3.5">Artículos</th>
+                <th class="py-3 px-3.5">ID Pedido</th>
+                <th class="py-3 px-3.5">Comprador</th>
+                <th class="py-3 px-3.5">Productos</th>
                 <th class="py-3 px-3.5 text-right">Total</th>
-                <th class="py-3 px-3.5 text-center">Estado</th>
+                <th class="py-3 px-3.5 text-center">Estado de Envío</th>
                 <th class="py-3 px-3.5 text-right">Acción</th>
               </tr>
             </thead>
             <tbody id="ordersTableBody" class="divide-y divide-white/5">
-              <!-- Rendered via JS -->
+              <!-- Injected via JavaScript -->
             </tbody>
           </table>
         </div>
@@ -529,146 +523,144 @@
   </main>
 
   <!-- ======================================================== -->
-  <!-- SLIDE-OVER DRAWER CART (SHOPIFY / APPLE STYLE) -->
+  <!-- SLIDE-OVER DRAWER CART -->
   <!-- ======================================================== -->
-  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300">
+  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
     
-    <!-- Scrim Backdrop -->
     <div 
       id="cartBackdrop" 
       onclick="toggleCartDrawer(false)" 
-      class="drawer-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+      class="drawer-scrim absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+      aria-hidden="true"
     ></div>
 
-    <!-- Drawer Panel (Right Side Slide-Over) -->
     <div 
       id="cartPanel" 
-      class="drawer-panel absolute inset-y-0 right-0 max-w-full w-full sm:w-[460px] bg-[#0c0d14] border-l border-white/10 shadow-2xl flex flex-col translate-x-full pointer-events-auto"
+      class="drawer-content absolute inset-y-0 right-0 max-w-full w-full sm:w-[460px] bg-[#0c0d14] border-l border-white/10 shadow-2xl flex flex-col translate-x-full pointer-events-auto"
     >
       
       <!-- Drawer Header -->
       <div class="p-5 border-b border-white/[0.08] flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20" aria-hidden="true">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-white">Bolsa de Compras</h3>
-            <p class="text-[10px] text-slate-400"><span id="drawerItemCount">0</span> artículos seleccionados</p>
+            <h3 id="drawerTitle" class="text-white">Bolsa de Compras</h3>
+            <p class="text-xs text-slate-400"><span id="drawerItemCount">0</span> artículos seleccionados</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="clearCart()" class="text-[11px] text-slate-400 hover:text-rose-400 transition-colors px-2 py-1">
+          <button onclick="clearCart()" class="text-xs text-slate-400 hover:text-rose-400 transition-colors px-2 py-1" aria-label="Vaciar todos los artículos de la bolsa">
             Vaciar
           </button>
-          <button onclick="toggleCartDrawer(false)" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          <button onclick="toggleCartDrawer(false)" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" aria-label="Cerrar bolsa de compras">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>
 
       <!-- Free Shipping Dynamic Progress Bar -->
-      <div class="px-5 py-3.5 bg-slate-900/50 border-b border-white/[0.06]">
+      <div class="px-5 py-3.5 bg-slate-900 border-b border-white/[0.06]">
         <div class="flex items-center justify-between text-xs mb-1.5">
           <span id="freeShippingLabel" class="text-slate-300 font-medium">Agrega $200 para envío prioritario gratis</span>
-          <span id="freeShippingPercent" class="font-mono text-blue-400 text-[11px]">0%</span>
+          <span id="freeShippingPercent" class="font-mono text-blue-400 text-xs">0%</span>
         </div>
-        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-          <div id="freeShippingProgressBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full transition-all duration-300 w-0"></div>
+        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden" aria-hidden="true">
+          <div id="freeShippingProgressBar" class="h-full bg-blue-500 rounded-full transition-all duration-300 w-0"></div>
         </div>
       </div>
 
-      <!-- Drawer Scrollable Item List -->
-      <div id="drawerItemsList" class="flex-grow overflow-y-auto p-5 space-y-4">
+      <!-- Scrollable Items List -->
+      <div id="drawerItemsList" class="flex-grow overflow-y-auto p-5 space-y-4" role="region" aria-label="Artículos en la bolsa">
         <!-- Injected via JS -->
       </div>
 
-      <!-- Coupon & Promotional Code Section -->
-      <div class="px-5 py-3 border-t border-white/[0.06] bg-slate-900/30">
+      <!-- Coupon Code Section -->
+      <div class="px-5 py-3 border-t border-white/[0.06] bg-slate-900">
         <div class="flex items-center gap-2">
           <div class="relative flex-grow">
             <input 
               type="text" 
               id="couponInput" 
               placeholder="Código de descuento (ej. APPLE20)" 
-              class="w-full px-3 py-1.5 bg-slate-950 border border-white/10 rounded-lg text-xs text-white uppercase placeholder-slate-500 font-mono focus:outline-none focus:border-blue-500"
+              aria-label="Código de descuento"
+              class="w-full px-3 py-2 bg-slate-950 border border-white/10 rounded-lg text-xs text-white uppercase placeholder-slate-400 font-mono focus:outline-none focus:border-blue-500"
             />
           </div>
-          <button onclick="applyCoupon()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-white/5 transition-colors">
+          <button onclick="applyCoupon()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-white/5 transition-colors" aria-label="Aplicar cupón promocional">
             Aplicar
           </button>
         </div>
-        <div id="couponFeedback" class="text-[11px] mt-1.5 hidden"></div>
+        <div id="couponFeedback" class="text-xs mt-1.5 hidden" role="status"></div>
       </div>
 
-      <!-- Totals Breakdown & Checkout Section -->
+      <!-- Totals & Checkout -->
       <div class="p-5 border-t border-white/[0.08] bg-[#090a10] space-y-3">
-        <!-- Subtotal -->
         <div class="flex justify-between text-xs text-slate-400">
           <span>Subtotal</span>
           <span id="drawerSubtotal" class="font-mono font-medium text-slate-200">$0.00</span>
         </div>
 
-        <!-- Discount -->
         <div id="drawerDiscountRow" class="hidden justify-between text-xs text-emerald-400">
           <span>Descuento aplicado (<span id="discountCodeName">CODE</span>)</span>
           <span id="drawerDiscountAmount" class="font-mono font-medium">-$0.00</span>
         </div>
 
-        <!-- Shipping -->
         <div class="flex justify-between text-xs text-slate-400">
           <span>Envío Express</span>
           <span id="drawerShippingCost" class="font-mono font-medium text-slate-200">$15.00</span>
         </div>
 
-        <!-- Estimated Tax -->
         <div class="flex justify-between text-xs text-slate-400">
           <span>Impuestos estimados (10%)</span>
           <span id="drawerTaxCost" class="font-mono font-medium text-slate-200">$0.00</span>
         </div>
 
-        <!-- Total -->
         <div class="pt-2 border-t border-white/[0.08] flex justify-between items-baseline">
           <span class="text-sm font-bold text-white">Total a Pagar</span>
-          <span id="drawerTotal" class="text-xl font-extrabold font-mono text-emerald-400">$0.00</span>
+          <span id="drawerTotal" class="text-xl font-bold font-mono text-emerald-400">$0.00</span>
         </div>
 
-        <!-- Checkout Trigger & Accordion -->
         <div class="pt-2">
           <button 
             id="toggleCheckoutBtn" 
-            onclick="toggleCheckoutForm()" 
-            class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs tracking-wide shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-98 transition-all"
+            onclick="handleProceedToCheckoutClick()" 
+            class="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs tracking-wide flex items-center justify-center gap-2 active:scale-98 transition-all"
+            aria-expanded="false"
+            aria-controls="checkoutDrawerForm"
           >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
             <span>Continuar con el Pago Seguro</span>
           </button>
         </div>
 
-        <!-- Seamless Checkout Accordion Form -->
-        <form id="checkoutDrawerForm" onsubmit="handleDrawerCheckout(event)" class="space-y-2.5 pt-3 border-t border-white/5 hidden">
+        <!-- Checkout Form (For Logged in Users) -->
+        <form id="checkoutDrawerForm" onsubmit="handleDrawerCheckout(event)" class="space-y-3 pt-3 border-t border-white/5 hidden">
           <div>
-            <label class="block text-[10px] font-medium text-slate-400 mb-0.5">Nombre Completo</label>
-            <input type="text" id="custNameInput" value="Eduardo Developer" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
+            <label for="custNameInput" class="block text-xs font-medium text-slate-300 mb-1">Nombre Completo</label>
+            <input type="text" id="custNameInput" name="customerName" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
           </div>
           <div>
-            <label class="block text-[10px] font-medium text-slate-400 mb-0.5">Correo Electrónico</label>
-            <input type="email" id="custEmailInput" value="eduardo@apple-cloud.dev" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
+            <label for="custEmailInput" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+            <input type="email" id="custEmailInput" name="customerEmail" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
           </div>
           <div>
-            <label class="block text-[10px] font-medium text-slate-400 mb-0.5">Dirección de Entrega</label>
-            <input type="text" id="custAddressInput" value="Infinite Loop 1, Cupertino CA" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
+            <label for="custAddressInput" class="block text-xs font-medium text-slate-300 mb-1">Dirección de Entrega</label>
+            <input type="text" id="custAddressInput" name="shippingAddress" value="Av. Las Condes 1024, Santiago" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
           </div>
           <button 
             type="submit" 
             id="btnProcessOrder" 
-            class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all active:scale-98"
+            class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wide flex items-center justify-center gap-2 transition-all active:scale-98"
           >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span>Confirmar en Spring Boot 3 + Postgres</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span>Confirmar Compra Segura</span>
           </button>
-          <div id="drawerCheckoutAlert" class="text-xs p-2.5 rounded-lg hidden"></div>
+          <div id="drawerCheckoutAlert" class="text-xs p-3 rounded-lg hidden" role="alert"></div>
         </form>
 
       </div>
@@ -677,34 +669,138 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <!-- USER AUTHENTICATION MODAL (MERCADO LIBRE STYLE) -->
   <!-- ======================================================== -->
-  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+  <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+    <!-- Backdrop -->
+    <div onclick="toggleAuthModal(false)" class="absolute inset-0 bg-black/75 backdrop-blur-sm" aria-hidden="true"></div>
+
+    <!-- Modal Box -->
+    <div class="relative bg-[#0d0f17] border border-white/15 rounded-2xl max-w-md w-full p-6 shadow-2xl z-10">
+      
+      <div class="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20" aria-hidden="true">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+          <div>
+            <h3 id="authModalTitle" class="text-base font-bold text-white">Mi Cuenta AURA TECH</h3>
+            <p class="text-xs text-slate-400">Inicia sesión para gestionar tus pedidos y compras</p>
+          </div>
+        </div>
+
+        <button onclick="toggleAuthModal(false)" class="text-slate-400 hover:text-white p-1 rounded-lg" aria-label="Cerrar modal de autenticación">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Quick Switch Demo Profiles -->
+      <div class="mb-5">
+        <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">Perfiles de Prueba Rápidos:</span>
+        <div class="grid grid-cols-1 gap-2">
+          
+          <button onclick="switchUser('Eduardo Developer', 'edu@enterprise.dev')" class="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 flex items-center justify-between transition-colors text-left group">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">ED</div>
+              <div>
+                <div class="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">Eduardo Developer</div>
+                <div class="text-[10px] text-slate-400">edu@enterprise.dev</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-blue-400 font-medium px-2 py-0.5 rounded bg-blue-500/10">Seleccionar</span>
+          </button>
+
+          <button onclick="switchUser('Alex Architect', 'alex@cloudmicro.io')" class="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 flex items-center justify-between transition-colors text-left group">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">AA</div>
+              <div>
+                <div class="text-xs font-semibold text-white group-hover:text-purple-400 transition-colors">Alex Architect</div>
+                <div class="text-[10px] text-slate-400">alex@cloudmicro.io</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-purple-400 font-medium px-2 py-0.5 rounded bg-purple-500/10">Seleccionar</span>
+          </button>
+
+          <button onclick="switchUser('Sarah Connor', 'sarah@techstudio.com')" class="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 flex items-center justify-between transition-colors text-left group">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">SC</div>
+              <div>
+                <div class="text-xs font-semibold text-white group-hover:text-emerald-400 transition-colors">Sarah Connor</div>
+                <div class="text-[10px] text-slate-400">sarah@techstudio.com</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-medium px-2 py-0.5 rounded bg-emerald-500/10">Seleccionar</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Or Custom Login Form -->
+      <form onsubmit="handleCustomLogin(event)" class="space-y-3 pt-3 border-t border-white/10">
+        <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">O ingresa con tu correo:</span>
+        <div>
+          <label for="authNameInput" class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre</label>
+          <input type="text" id="authNameInput" placeholder="Ej. Camila Silva" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
+        </div>
+        <div>
+          <label for="authEmailInput" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+          <input type="email" id="authEmailInput" placeholder="tu@correo.com" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500" />
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors">
+          Ingresar a mi Cuenta
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- TOAST NOTIFICATIONS -->
+  <!-- ======================================================== -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
 
   <!-- ======================================================== -->
   <!-- FOOTER -->
   <!-- ======================================================== -->
-  <footer class="border-t border-white/[0.08] bg-[#06070a] py-8 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span class="font-medium text-slate-400">AURA TECH Storefront · Cloud Microservices Architecture</span>
+  <footer class="border-t border-white/[0.08] bg-[#06070a] py-10 text-xs text-slate-400" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/5">
+        <div>
+          <span class="text-base font-bold text-white">AURA TECH Store</span>
+          <p class="text-slate-400 mt-1">Equipos de cómputo de alto rendimiento, displays Retina y periféricos profesionales.</p>
+        </div>
+        <div class="flex items-center gap-6 text-slate-300">
+          <a href="#catalogSection" class="hover:text-white transition-colors">Catálogo</a>
+          <a href="#benefitsSection" class="hover:text-white transition-colors">Garantías</a>
+          <a href="#trackingSection" class="hover:text-white transition-colors">Seguimiento</a>
+          <button onclick="toggleAuthModal(true)" class="hover:text-white transition-colors">Mi Cuenta</button>
+        </div>
       </div>
-      <div>
-        FastAPI MongoDB + Redis Caché &middot; Java 21 Spring Boot 3 PostgreSQL &middot; Saga Event Flow
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div>&copy; 2026 AURA TECH. Todos los derechos reservados. Compras seguras con encriptación SSL.</div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+          <span>Despachos nacionales activos en 24h</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- ======================================================== -->
-  <!-- APPLICATION LOGIC & REACTIVE STORE -->
+  <!-- APPLICATION ENGINE & PERSISTENCE -->
   <!-- ======================================================== -->
   <script>
-    // API endpoints
     const CATALOG_API = '/api/catalog';
     const ORDER_API = '/api/orders';
 
-    // Rich initial demo seed products (guarantees stunning rendering if microservices are still warming up)
+    // Current Session User
+    let currentUser = JSON.parse(localStorage.getItem('aura_active_user')) || {
+      name: "Eduardo Developer",
+      email: "edu@enterprise.dev"
+    };
+
     const DEFAULT_PRODUCTS = [
       {
         sku: "DEV-M3-PRO",
@@ -712,7 +808,7 @@
         description: "Estación de desarrollo de alta densidad para virtualización, contenedores y compilación paralela.",
         price: 2199.00,
         category: "hardware",
-        stock: 3, // Low stock on purpose to showcase dynamic badge
+        stock: 3,
         badge: "Flagship M3",
         image_url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"
       },
@@ -742,7 +838,7 @@
         description: "Drivers de berilio de 40mm, cancelación activa adaptativa y audio espacial sin pérdida por USB-C.",
         price: 279.99,
         category: "audio",
-        stock: 2, // Critical stock!
+        stock: 2,
         badge: "Audio Espacial",
         image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"
       },
@@ -762,44 +858,169 @@
         description: "Triple salida 4K 120Hz, lector SD UHS-II de alta velocidad y ethernet de 2.5Gbps para ingenieros.",
         price: 189.00,
         category: "perifericos",
-        stock: 0, // Sold out on purpose to showcase Out of Stock badge & disabled interaction
+        stock: 0,
         badge: "Agotado",
         image_url: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80"
       }
     ];
 
-    // Reactive State
     let products = [...DEFAULT_PRODUCTS];
     let cart = [];
     let currentCategory = '';
     let currentSearch = '';
     let currentSort = 'featured';
     let onlyInStock = false;
-    let appliedCoupon = null; // { code: 'APPLE20', discountPct: 0.20 }
+    let appliedCoupon = null;
 
-    // Audio Microinteraction (Subtle tactile click)
+    // Persistent in-memory & local storage order list
+    let ordersList = JSON.parse(localStorage.getItem('aura_orders_store')) || [
+      {
+        id: "c7ab7e7b-571f-4fdd-8ecb-ec38f0ee9d1d",
+        customerName: "Eduardo Developer",
+        customerEmail: "edu@enterprise.dev",
+        items: [{ productTitle: "M3 Pro Workstation Titanium 32GB", quantity: 1, price: 2199.00 }],
+        totalAmount: 2199.00,
+        status: "CONFIRMED"
+      },
+      {
+        id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        customerName: "Eduardo Developer",
+        customerEmail: "edu@enterprise.dev",
+        items: [{ productTitle: "Teclado Mecánico Custom Hot-Swap", quantity: 1, price: 139.50 }],
+        totalAmount: 139.50,
+        status: "SHIPPED"
+      },
+      {
+        id: "f9e8d7c6-b5a4-3210-fedc-ba0987654321",
+        customerName: "Alex Architect",
+        customerEmail: "alex@cloudmicro.io",
+        items: [{ productTitle: "Monitor Curvo 34\" 5K Retina", quantity: 1, price: 689.00 }],
+        totalAmount: 689.00,
+        status: "PREPARING"
+      },
+      {
+        id: "8899aabb-ccdd-eeff-0011-223344556677",
+        customerName: "Sarah Connor",
+        customerEmail: "sarah@techstudio.com",
+        items: [{ productTitle: "Auriculares Studio ANC", quantity: 2, price: 279.99 }],
+        totalAmount: 559.98,
+        status: "DELIVERED"
+      }
+    ];
+
+    let activeTrackingOrder = ordersList[0];
+
+    // Audio Feedback
     let audioCtx = null;
     function playTactileFeedback() {
       try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(600, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.04);
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start();
         osc.stop(audioCtx.currentTime + 0.04);
-      } catch (e) {
-        // Audio optional, ignore if browser restricts
+      } catch (e) {}
+    }
+
+    // ========================================================
+    // USER ACCOUNT & AUTHENTICATION (MERCADO LIBRE STYLE)
+    // ========================================================
+    function renderUserAccountWidget() {
+      const container = document.getElementById('userAccountContainer');
+      if (!currentUser) {
+        container.innerHTML = `
+          <button onclick="toggleAuthModal(true)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-white/10 text-xs font-semibold transition-colors">
+            <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span>Ingresar</span>
+          </button>
+        `;
+      } else {
+        const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        container.innerHTML = `
+          <div class="flex items-center gap-2">
+            <button onclick="toggleAuthModal(true)" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 text-xs text-white transition-colors" title="Gestionar cuenta">
+              <div class="w-5 h-5 rounded-full bg-blue-600 text-[10px] font-bold flex items-center justify-center">${initials}</div>
+              <span class="max-w-[120px] truncate font-medium">${currentUser.name}</span>
+            </button>
+            <button onclick="logoutUser()" class="p-1.5 text-slate-400 hover:text-rose-400 transition-colors" title="Cerrar sesión">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
+          </div>
+        `;
+      }
+
+      // Update checkout inputs if present
+      if (currentUser) {
+        document.getElementById('custNameInput').value = currentUser.name;
+        document.getElementById('custEmailInput').value = currentUser.email;
+      }
+    }
+
+    function toggleAuthModal(open) {
+      playTactileFeedback();
+      const modal = document.getElementById('authModal');
+      if (open) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function switchUser(name, email) {
+      playTactileFeedback();
+      currentUser = { name, email };
+      localStorage.setItem('aura_active_user', JSON.stringify(currentUser));
+      renderUserAccountWidget();
+      toggleAuthModal(false);
+      showToast(`Sesión iniciada como <strong>${name}</strong>`, 'success');
+      loadOrders();
+    }
+
+    function handleCustomLogin(e) {
+      e.preventDefault();
+      playTactileFeedback();
+      const name = document.getElementById('authNameInput').value.trim();
+      const email = document.getElementById('authEmailInput').value.trim();
+      if (!name || !email) return;
+      switchUser(name, email);
+    }
+
+    function logoutUser() {
+      playTactileFeedback();
+      currentUser = null;
+      localStorage.removeItem('aura_active_user');
+      renderUserAccountWidget();
+      showToast('Has cerrado sesión', 'info');
+      loadOrders();
+    }
+
+    function handleMyOrdersClick() {
+      if (!currentUser) {
+        toggleAuthModal(true);
+        showToast('Inicia sesión para ver tus compras', 'info');
+      } else {
+        scrollToTracking();
+      }
+    }
+
+    function handleProceedToCheckoutClick() {
+      if (!currentUser) {
+        toggleAuthModal(true);
+        showToast('Inicia sesión para completar tu compra segura', 'info');
+      } else {
+        toggleCheckoutForm();
       }
     }
 
@@ -822,7 +1043,6 @@
           }
         }
       } catch (err) {
-        // Fallback to local state gracefully
         console.log("Using cached/local storefront catalog");
       }
       renderProducts();
@@ -835,12 +1055,10 @@
 
       let filtered = [...products];
 
-      // Filter by category
       if (currentCategory) {
         filtered = filtered.filter(p => p.category.toLowerCase() === currentCategory.toLowerCase());
       }
 
-      // Filter by search
       if (currentSearch) {
         const q = currentSearch.toLowerCase();
         filtered = filtered.filter(p => 
@@ -850,12 +1068,10 @@
         );
       }
 
-      // Filter by stock
       if (onlyInStock) {
         filtered = filtered.filter(p => p.stock > 0);
       }
 
-      // Sort
       if (currentSort === 'price-asc') {
         filtered.sort((a, b) => a.price - b.price);
       } else if (currentSort === 'price-desc') {
@@ -868,22 +1084,21 @@
 
       if (filtered.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-16 glass-card rounded-2xl">
-            <svg class="w-10 h-10 text-slate-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-16 surface-panel rounded-2xl">
+            <svg class="w-10 h-10 text-slate-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h4 class="text-sm font-bold text-slate-300">No se encontraron productos</h4>
-            <p class="text-xs text-slate-500 mt-1">Prueba con otra categoría o término de búsqueda.</p>
+            <h3 class="text-sm font-bold text-slate-300">No se encontraron productos</h3>
+            <p class="text-xs text-slate-400 mt-1">Prueba con otra categoría o término de búsqueda.</p>
           </div>
         `;
         return;
       }
 
       filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = "glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between group overflow-hidden relative";
+        const card = document.createElement('article');
+        card.className = "surface-panel surface-panel-hover p-5 flex flex-col justify-between group overflow-hidden relative";
 
-        // Dynamic Stock Badge Logic
         let stockBadgeHtml = '';
         const isOutOfStock = p.stock === 0;
         const isLowStock = p.stock > 0 && p.stock <= 3;
@@ -891,22 +1106,22 @@
         if (isOutOfStock) {
           stockBadgeHtml = `
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-              Agotado · Preventa
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-500" aria-hidden="true"></span>
+              Agotado · Próximo ingreso
             </span>
           `;
         } else if (isLowStock) {
           stockBadgeHtml = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 animate-pulse-subtle">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400" aria-hidden="true"></span>
               ¡Últimas ${p.stock} unidades!
             </span>
           `;
         } else {
           stockBadgeHtml = `
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              En Stock · ${p.stock} disp.
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
+              En Stock · Despacho 24h
             </span>
           `;
         }
@@ -916,7 +1131,6 @@
 
         card.innerHTML = `
           <div>
-            <!-- Top Badges Row -->
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="text-[10px] font-mono tracking-wider uppercase px-2 py-0.5 rounded bg-white/[0.05] text-slate-300 border border-white/10">
                 ${p.sku}
@@ -924,22 +1138,19 @@
               ${stockBadgeHtml}
             </div>
 
-            <!-- Product Visual Showcase with Hover Zoom -->
-            <div class="relative w-full h-44 rounded-xl overflow-hidden bg-slate-900/80 border border-white/5 mb-4 group/img">
+            <div class="relative w-full h-44 rounded-xl overflow-hidden bg-slate-900 border border-white/5 mb-4 group/img">
               <img 
                 src="${imgUrl}" 
                 alt="${p.title}" 
-                class="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                class="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-300 ease-out"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60"></div>
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-semibold bg-black/60 backdrop-blur-md text-slate-300 border border-white/10 capitalize">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-semibold bg-black/70 text-slate-200 border border-white/10 capitalize">
                 ${p.category}
               </span>
             </div>
 
-            <!-- Title & Description -->
-            <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-1.5">
+            <h3 class="text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-1.5">
               ${p.title}
             </h3>
             <p class="text-xs text-slate-400 font-light line-clamp-2 mb-4 leading-relaxed">
@@ -947,27 +1158,27 @@
             </p>
           </div>
 
-          <!-- Bottom Price & Interactive CTA Button -->
           <div class="pt-3 border-t border-white/[0.08] flex items-center justify-between gap-3 mt-auto">
             <div>
-              <span class="text-[10px] text-slate-400 block font-mono">Precio Unitario</span>
-              <span class="text-lg font-extrabold font-mono text-white tracking-tight">${priceFormatted}</span>
+              <span class="text-[10px] text-slate-400 block font-mono">Precio de Contado</span>
+              <span class="text-lg font-bold font-mono text-white tracking-tight">${priceFormatted}</span>
             </div>
 
             <button 
               id="btn-add-${p.sku}"
               onclick="triggerAddToCart('${p.sku}', this)" 
               ${isOutOfStock ? 'disabled' : ''}
-              class="relative px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 active:scale-95 ${
+              aria-label="${isOutOfStock ? 'Producto sin stock' : 'Agregar ' + p.title + ' a la bolsa'}"
+              class="relative px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors active:scale-95 ${
                 isOutOfStock 
                   ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700' 
-                  : 'bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-blue-600/20 group/btn'
+                  : 'bg-brand-500 hover:bg-brand-600 text-white shadow-sm shadow-blue-500/20'
               }"
             >
-              <svg class="w-3.5 h-3.5 transition-transform group-hover/btn:rotate-90 duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
               </svg>
-              <span>${isOutOfStock ? 'Sin Stock' : 'Agregar'}</span>
+              <span>${isOutOfStock ? 'Agotado' : 'Agregar'}</span>
             </button>
           </div>
         `;
@@ -981,7 +1192,7 @@
       const cats = Array.from(new Set(products.map(p => p.category)));
       
       let html = `
-        <button onclick="setCategory('')" class="glass-pill ${currentCategory === '' ? 'active bg-white/15 border-white/30 text-white' : 'text-slate-400'} px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 whitespace-nowrap">
+        <button onclick="setCategory('')" class="pill-filter ${currentCategory === '' ? 'active' : 'text-slate-400'} px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 whitespace-nowrap" role="tab" aria-selected="${currentCategory === ''}">
           <span>Todos</span>
           <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/10 font-mono">${products.length}</span>
         </button>
@@ -991,7 +1202,7 @@
         const count = products.filter(p => p.category === c).length;
         const isActive = currentCategory.toLowerCase() === c.toLowerCase();
         html += `
-          <button onclick="setCategory('${c}')" class="glass-pill ${isActive ? 'active bg-white/15 border-white/30 text-white' : 'text-slate-400'} px-3.5 py-1.5 rounded-xl text-xs font-medium capitalize flex items-center gap-1.5 whitespace-nowrap">
+          <button onclick="setCategory('${c}')" class="pill-filter ${isActive ? 'active' : 'text-slate-400'} px-3.5 py-1.5 rounded-xl text-xs font-medium capitalize flex items-center gap-1.5 whitespace-nowrap" role="tab" aria-selected="${isActive}">
             <span>${c}</span>
             <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/10 font-mono">${count}</span>
           </button>
@@ -1026,34 +1237,27 @@
       renderProducts();
     }
 
-    // ========================================================
-    // MICROINTERACTION: ADD TO CART WITH FLYING PARTICLE & SOUND
-    // ========================================================
     function triggerAddToCart(sku, btnElement) {
       playTactileFeedback();
 
       const prod = products.find(p => p.sku === sku);
       if (!prod || prod.stock <= 0) return;
 
-      // Animate button feedback: Change text and color briefly
       const originalHtml = btnElement.innerHTML;
-      btnElement.classList.remove('bg-brand-600', 'hover:bg-brand-500');
+      btnElement.classList.remove('bg-brand-500', 'hover:bg-brand-600');
       btnElement.classList.add('bg-emerald-600', 'hover:bg-emerald-500', 'text-white');
       btnElement.innerHTML = `
-        <svg class="w-3.5 h-3.5 animate-scale-up" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
         </svg>
         <span>✓ Añadido!</span>
       `;
 
-      // Flying Particle effect towards cart button
       createFlyingParticle(btnElement);
 
-      // Decrement stock dynamically
       prod.stock -= 1;
       renderProducts();
 
-      // Add to internal cart state
       const existing = cart.find(i => i.productSku === sku);
       if (existing) {
         existing.quantity += 1;
@@ -1070,15 +1274,9 @@
 
       updateCartDrawerUI();
 
-      // Bounce Cart Badge in header
-      const cartBadge = document.getElementById('cartCountBadge');
-      cartBadge.classList.add('animate-bounce-cart');
-      setTimeout(() => cartBadge.classList.remove('animate-bounce-cart'), 500);
-
-      // Restore button state after 1.2s
       setTimeout(() => {
         btnElement.classList.remove('bg-emerald-600', 'hover:bg-emerald-500');
-        btnElement.classList.add('bg-brand-600', 'hover:bg-brand-500');
+        btnElement.classList.add('bg-brand-500', 'hover:bg-brand-600');
         btnElement.innerHTML = originalHtml;
       }, 1200);
 
@@ -1086,12 +1284,14 @@
     }
 
     function createFlyingParticle(sourceElement) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
       const rect = sourceElement.getBoundingClientRect();
       const cartBtn = document.getElementById('cartTriggerBtn');
       const cartRect = cartBtn.getBoundingClientRect();
 
       const chip = document.createElement('div');
-      chip.className = 'flying-chip px-2 py-0.5 rounded-full bg-blue-500 text-white font-mono text-[10px] font-bold shadow-lg shadow-blue-500/50 flex items-center gap-1';
+      chip.className = 'flying-chip px-2 py-0.5 rounded-full bg-blue-500 text-white font-mono text-[10px] font-bold flex items-center gap-1';
       chip.innerHTML = '<span>+1</span>';
       chip.style.left = `${rect.left + rect.width / 2}px`;
       chip.style.top = `${rect.top}px`;
@@ -1109,9 +1309,6 @@
       setTimeout(() => chip.remove(), 700);
     }
 
-    // ========================================================
-    // SLIDE-OVER DRAWER LOGIC & REACTIVE TOTALS
-    // ========================================================
     function toggleCartDrawer(open) {
       playTactileFeedback();
       const drawer = document.getElementById('cartDrawer');
@@ -1137,9 +1334,11 @@
       }
     }
 
-    // Close on Escape Key
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') toggleCartDrawer(false);
+      if (e.key === 'Escape') {
+        toggleCartDrawer(false);
+        toggleAuthModal(false);
+      }
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         document.getElementById('searchInput').focus();
@@ -1157,13 +1356,13 @@
       if (cart.length === 0) {
         list.innerHTML = `
           <div class="text-center py-16 flex flex-col items-center justify-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 mb-3">
+            <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 mb-3" aria-hidden="true">
               <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </div>
-            <h4 class="text-sm font-bold text-slate-300">Tu bolsa está vacía</h4>
-            <p class="text-xs text-slate-500 mt-1 max-w-[220px]">Explora nuestro catálogo para añadir dispositivos y accesorios pro.</p>
+            <h4 class="text-slate-300">Tu bolsa está vacía</h4>
+            <p class="text-xs text-slate-400 mt-1 max-w-[220px]">Explora nuestro catálogo para añadir dispositivos y accesorios pro.</p>
           </div>
         `;
         resetTotals();
@@ -1177,30 +1376,40 @@
         subtotal += itemTotal;
 
         const row = document.createElement('div');
-        row.className = "p-3 rounded-xl bg-slate-900/60 border border-white/5 flex items-center justify-between gap-3";
+        row.className = "p-3.5 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-between gap-3";
 
         row.innerHTML = `
           <div class="flex items-center gap-3">
             <img src="${item.image_url || 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80'}" class="w-12 h-12 rounded-lg object-cover border border-white/10" alt="${item.productTitle}">
             <div>
               <div class="text-xs font-bold text-white line-clamp-1 max-w-[170px]">${item.productTitle}</div>
-              <div class="text-[10px] text-slate-400 font-mono mt-0.5">
+              <div class="text-[11px] text-slate-400 font-mono mt-0.5">
                 $${item.price.toFixed(2)} c/u &middot; <span class="text-blue-400">${item.productSku}</span>
               </div>
             </div>
           </div>
 
           <div class="flex items-center gap-2">
-            <!-- Stepper Controls -->
             <div class="flex items-center bg-slate-950 border border-white/10 rounded-lg overflow-hidden">
-              <button onclick="changeItemQty('${item.productSku}', -1)" class="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors text-xs font-bold">-</button>
-              <span class="w-6 text-center font-mono text-xs font-bold text-white">${item.quantity}</span>
-              <button onclick="changeItemQty('${item.productSku}', 1)" class="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors text-xs font-bold">+</button>
+              <button 
+                onclick="changeItemQty('${item.productSku}', -1)" 
+                class="min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors text-sm font-bold"
+                aria-label="Disminuir cantidad de ${item.productTitle}"
+              >-</button>
+              <span class="min-w-[32px] text-center font-mono text-xs font-bold text-white" aria-live="polite">${item.quantity}</span>
+              <button 
+                onclick="changeItemQty('${item.productSku}', 1)" 
+                class="min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors text-sm font-bold"
+                aria-label="Aumentar cantidad de ${item.productTitle}"
+              >+</button>
             </div>
 
-            <!-- Remove Button -->
-            <button onclick="removeItem('${item.productSku}')" class="p-1.5 text-slate-500 hover:text-rose-400 transition-colors">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            <button 
+              onclick="removeItem('${item.productSku}')" 
+              class="min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-400 hover:text-rose-400 transition-colors"
+              aria-label="Eliminar ${item.productTitle} de la bolsa"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
             </button>
           </div>
         `;
@@ -1208,7 +1417,6 @@
         list.appendChild(row);
       });
 
-      // Free shipping progress logic ($200 threshold)
       const threshold = 200.00;
       const progressPct = Math.min(100, Math.round((subtotal / threshold) * 100));
       const progressBar = document.getElementById('freeShippingProgressBar');
@@ -1219,13 +1427,12 @@
       progressText.textContent = `${progressPct}%`;
 
       if (subtotal >= threshold) {
-        progressLabel.innerHTML = `✓ <strong class="text-emerald-400">¡Calificas para Envío Prioritario Gratis!</strong>`;
+        progressLabel.innerHTML = `✓ <strong class="text-emerald-400">¡Calificas para Envío Express Gratis!</strong>`;
       } else {
         const remaining = (threshold - subtotal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         progressLabel.textContent = `Agrega ${remaining} más para envío gratis en 24h`;
       }
 
-      // Calculations: Discount, Tax & Shipping
       let discountAmount = 0;
       if (appliedCoupon) {
         discountAmount = subtotal * appliedCoupon.discountPct;
@@ -1240,7 +1447,7 @@
 
       const shippingCost = (subtotal >= threshold || (appliedCoupon && appliedCoupon.code === 'FREESHIP')) ? 0.00 : 15.00;
       const taxableSubtotal = Math.max(0, subtotal - discountAmount);
-      const taxCost = taxableSubtotal * 0.10; // 10% tax
+      const taxCost = taxableSubtotal * 0.10;
       const totalAmount = taxableSubtotal + shippingCost + taxCost;
 
       document.getElementById('drawerSubtotal').textContent = subtotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -1306,7 +1513,6 @@
       showToast('Bolsa de compras vaciada', 'info');
     }
 
-    // Coupon Code Engine
     function applyCoupon() {
       playTactileFeedback();
       const input = document.getElementById('couponInput');
@@ -1317,19 +1523,19 @@
 
       if (code === 'APPLE20') {
         appliedCoupon = { code: 'APPLE20', discountPct: 0.20 };
-        feedback.className = "text-[11px] mt-1.5 text-emerald-400 block";
+        feedback.className = "text-xs mt-1.5 text-emerald-400 block";
         feedback.textContent = "✓ ¡Cupón APPLE20 aplicado! 20% de descuento en el total.";
-      } else if (code === 'CLOUD10') {
-        appliedCoupon = { code: 'CLOUD10', discountPct: 0.10 };
-        feedback.className = "text-[11px] mt-1.5 text-emerald-400 block";
-        feedback.textContent = "✓ ¡Cupón CLOUD10 aplicado! 10% de descuento en el total.";
+      } else if (code === 'TECH10') {
+        appliedCoupon = { code: 'TECH10', discountPct: 0.10 };
+        feedback.className = "text-xs mt-1.5 text-emerald-400 block";
+        feedback.textContent = "✓ ¡Cupón TECH10 aplicado! 10% de descuento en el total.";
       } else if (code === 'FREESHIP') {
         appliedCoupon = { code: 'FREESHIP', discountPct: 0.00 };
-        feedback.className = "text-[11px] mt-1.5 text-emerald-400 block";
-        feedback.textContent = "✓ ¡Cupón FREESHIP aplicado! Envío prioritario bonificado.";
+        feedback.className = "text-xs mt-1.5 text-emerald-400 block";
+        feedback.textContent = "✓ ¡Cupón FREESHIP aplicado! Envío express bonificado.";
       } else {
-        feedback.className = "text-[11px] mt-1.5 text-rose-400 block";
-        feedback.textContent = "Cupón inválido. Prueba con APPLE20 o CLOUD10.";
+        feedback.className = "text-xs mt-1.5 text-rose-400 block";
+        feedback.textContent = "Cupón inválido. Prueba con APPLE20 o TECH10.";
         appliedCoupon = null;
       }
 
@@ -1339,15 +1545,15 @@
     function toggleCheckoutForm() {
       playTactileFeedback();
       const form = document.getElementById('checkoutDrawerForm');
+      const btn = document.getElementById('toggleCheckoutBtn');
       form.classList.toggle('hidden');
-      if (!form.classList.contains('hidden')) {
+      const isExpanded = !form.classList.contains('hidden');
+      btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      if (isExpanded) {
         form.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // ========================================================
-    // PROCESS ORDER WITH SPRING BOOT 3 & POSTGRESQL
-    // ========================================================
     async function handleDrawerCheckout(e) {
       e.preventDefault();
       if (cart.length === 0) {
@@ -1361,11 +1567,11 @@
       
       btn.disabled = true;
       btn.innerHTML = `
-        <svg class="w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24" aria-hidden="true">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
         </svg>
-        <span>Saga en progreso (Spring Boot + Postgres)...</span>
+        <span>Procesando compra segura...</span>
       `;
 
       const payload = {
@@ -1391,9 +1597,12 @@
         if (res.ok) {
           order = await res.json();
         } else {
-          // Fallback simulation if containers offline
+          // Robust client UUID generation for seamless standalone mode
+          const uuid = 'ord-' + ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+          );
           order = {
-            id: 'ORD-' + Math.random().toString(36).substring(2, 9).toUpperCase(),
+            id: uuid,
             customerName: payload.customerName,
             customerEmail: payload.customerEmail,
             totalAmount: cart.reduce((acc, i) => acc + (i.price * i.quantity), 0) * 1.1,
@@ -1402,338 +1611,283 @@
           };
         }
 
+        // Add to persistent orders list
+        ordersList.unshift(order);
+        localStorage.setItem('aura_orders_store', JSON.stringify(ordersList));
+
         alertBox.className = "text-xs p-3 rounded-xl bg-emerald-950/80 border border-emerald-600 text-emerald-200 block";
         alertBox.innerHTML = `
           <div class="font-bold flex items-center gap-1.5 mb-1">
-            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            ¡Orden Persistida con Éxito!
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            ¡Compra Confirmada con Éxito!
           </div>
-          <div>ID Transaccional: <span class="font-mono font-bold text-white">${order.id}</span></div>
-          <div class="text-[10px] text-emerald-300 mt-1">Conectado a la Saga de Microservicios. Iniciando tracking visual...</div>
+          <div>Código de Orden: <span class="font-mono font-bold text-white">${order.id.substring(0, 13)}...</span></div>
+          <div class="text-[11px] text-emerald-300 mt-1">Guía DHL asignada. Verificando seguimiento en vivo...</div>
         `;
 
-        // Clear cart
         cart = [];
         updateCartDrawerUI();
-
-        // Update active tracking
-        setActiveTrackingOrder(order.id, 1, order);
+        setActiveTrackingOrder(order.id);
 
         setTimeout(() => {
           toggleCartDrawer(false);
           alertBox.classList.add('hidden');
           scrollToTracking();
-        }, 2000);
+        }, 1800);
 
-        await loadOrders();
-        await updateTelemetry();
+        loadOrders();
 
       } catch (err) {
-        // Fallback simulation
-        const fakeId = 'ORD-SIM-' + Math.floor(1000 + Math.random() * 9000);
-        alertBox.className = "text-xs p-3 rounded-xl bg-emerald-950/80 border border-emerald-600 text-emerald-200 block";
-        alertBox.innerHTML = `
-          <strong>✓ Orden Simulada con Éxito!</strong><br>
-          ID: <span class="font-mono">${fakeId}</span>
-        `;
-        setActiveTrackingOrder(fakeId, 1, {
+        // Fallback local persistence
+        const fakeId = 'ord-' + ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+          (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+        const fallbackOrder = {
           id: fakeId,
           customerName: payload.customerName,
-          totalAmount: 1899.00,
-          status: 'CONFIRMED'
-        });
+          customerEmail: payload.customerEmail,
+          totalAmount: 2199.00,
+          status: 'CONFIRMED',
+          items: payload.items
+        };
+        ordersList.unshift(fallbackOrder);
+        localStorage.setItem('aura_orders_store', JSON.stringify(ordersList));
+        setActiveTrackingOrder(fallbackOrder.id);
         cart = [];
         updateCartDrawerUI();
+        loadOrders();
         setTimeout(() => {
           toggleCartDrawer(false);
           scrollToTracking();
-        }, 1800);
+        }, 1500);
       } finally {
         btn.disabled = false;
         btn.innerHTML = `
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-          <span>Confirmar en Spring Boot 3 + Postgres</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+          <span>Confirmar Compra Segura</span>
         `;
       }
     }
 
-    // Fast order simulation from hero
-    async function simulateFastOrder() {
-      playTactileFeedback();
-      const payload = {
-        customerName: "Alex Architect",
-        customerEmail: "alex@cloudmicro.io",
-        shippingAddress: "Cloud Innovation Center, Silicon Valley",
-        items: [
-          { productSku: "DEV-M3-PRO", productTitle: "M3 Pro Workstation Titanium 32GB", price: 2199.00, quantity: 1 }
-        ]
-      };
-
-      try {
-        const res = await fetch(ORDER_API + '/orders', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        let order;
-        if (res.ok) {
-          order = await res.json();
-        } else {
-          order = {
-            id: 'ORD-' + Math.random().toString(36).substring(2, 9).toUpperCase(),
-            customerName: payload.customerName,
-            totalAmount: 2199.00,
-            status: 'CONFIRMED'
-          };
-        }
-        showToast(`Compra rápida completada: Orden #${order.id}`, 'success');
-        setActiveTrackingOrder(order.id, 1, order);
-        scrollToTracking();
-        await loadOrders();
-        await updateTelemetry();
-      } catch (e) {
-        const mockId = 'ORD-FAST-' + Math.floor(100 + Math.random() * 900);
-        showToast(`Compra rápida simulada: Orden #${mockId}`, 'success');
-        setActiveTrackingOrder(mockId, 1, { id: mockId, customerName: payload.customerName });
-        scrollToTracking();
-      }
-    }
-
     // ========================================================
-    // VISUAL ORDER STATUS TIMELINE ENGINE
+    // ORDER TRACKING TIMELINE ENGINE & BUG FIX
     // ========================================================
-    let currentTrackingStep = 1; // 1 to 5
-    let currentTrackingOrderId = "ORD-DEMO-991";
+    const STATUS_MAP = {
+      1: 'CONFIRMED',
+      2: 'PREPARING',
+      3: 'SHIPPED',
+      4: 'DELIVERED'
+    };
 
     const STEP_INFO = {
       1: {
-        title: "Paso 1 de 5: Pedido Confirmado en Base de Datos",
-        desc: "Transacción persistida con JPA / Hibernate en PostgreSQL por el microservicio Spring Boot 3. Evento emitido al bus de mensajería.",
-        progress: "15%",
-        carrier: "SAGA-TX-SPRING-01"
+        title: "Paso 1 de 4: Pago Aprobado y Orden Confirmada",
+        desc: "Tu pago ha sido validado exitosamente. La factura digital y la garantía oficial han sido emitidas y enviadas a tu correo.",
+        progress: "25%",
+        status: "CONFIRMED"
       },
       2: {
-        title: "Paso 2 de 5: Inventario Asignado & Descontado",
-        desc: "Catálogo en MongoDB decrementa unidades reservadas. Redis Cache-Aside invalida claves de catálogo para reflejar stock en milisegundos.",
-        progress: "38%",
-        carrier: "MONGO-STOCK-RESV"
+        title: "Paso 2 de 4: En Preparación en Almacén Central",
+        desc: "Los productos han sido asignados desde bodega. Se realiza control de calidad y embalaje térmico de alta protección.",
+        progress: "50%",
+        status: "PREPARING"
       },
       3: {
-        title: "Paso 3 de 5: Preparación en Hub Logístico",
-        desc: "Control de calidad realizado, hardware verificado y empaque térmico con protección antiestática preparado para despacho.",
-        progress: "62%",
-        carrier: "HUB-CUPERTINO-DOCK"
+        title: "Paso 3 de 4: En Tránsito con Courier Express",
+        desc: "El paquete fue despachado desde el centro de distribución internacional y se encuentra en ruta hacia tu ciudad.",
+        progress: "75%",
+        status: "SHIPPED"
       },
       4: {
-        title: "Paso 4 de 5: Despacho en Ruta (Courier Express)",
-        desc: "Guía de seguimiento internacional generada. Paquete en vuelo de carga prioritario con entrega garantizada en 24 horas.",
-        progress: "85%",
-        carrier: "CARRIER-EXP-99214-US"
-      },
-      5: {
-        title: "Paso 5 de 5: Entregado & Confirmado al Cliente",
-        desc: "Paquete recepcionado con firma electrónica y verificación criptográfica. Saga finalizada con éxito.",
+        title: "Paso 4 de 4: Entregado en Destino",
+        desc: "Paquete entregado satisfactoriamente en la dirección indicada con firma electrónica de recepción.",
         progress: "100%",
-        carrier: "DELIVERED-SIGNED-OK"
+        status: "DELIVERED"
       }
     };
 
-    function setActiveTrackingOrder(orderId, step = 1, orderObj = null) {
-      currentTrackingOrderId = orderId;
-      document.getElementById('activeTrackingId').textContent = orderId;
-      setActiveStep(step);
+    function setActiveTrackingOrder(orderId) {
+      const order = ordersList.find(o => o.id === orderId);
+      if (!order) return;
+      activeTrackingOrder = order;
+
+      let step = 1;
+      if (order.status === 'PREPARING') step = 2;
+      else if (order.status === 'SHIPPED') step = 3;
+      else if (order.status === 'DELIVERED') step = 4;
+
+      renderTimelineView(step);
     }
 
-    function setActiveStep(step) {
-      playTactileFeedback();
-      currentTrackingStep = step;
+    function renderTimelineView(step) {
       const info = STEP_INFO[step] || STEP_INFO[1];
-
-      // Update progress bar
       document.getElementById('timelineProgressBar').style.width = info.progress;
 
-      // Update Node Visuals
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 4; i++) {
         const node = document.getElementById(`stepNode${i}`);
+        if (!node) continue;
         if (i < step) {
-          // Completed step
-          node.className = "w-10 h-10 rounded-full bg-emerald-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-emerald-500/30 transition-transform duration-300";
-          node.innerHTML = `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>`;
+          node.className = "w-10 h-10 rounded-full bg-emerald-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold transition-transform";
+          node.innerHTML = `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>`;
         } else if (i === step) {
-          // Active step
-          node.className = "w-10 h-10 rounded-full bg-blue-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-blue-500/40 ring-4 ring-blue-500/30 scale-110 transition-transform duration-300";
+          node.className = "w-10 h-10 rounded-full bg-blue-600 border-4 border-[#0e1017] flex items-center justify-center text-white text-xs font-bold scale-105 transition-transform";
         } else {
-          // Inactive step
-          node.className = "w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-500 text-xs font-bold transition-transform duration-300";
+          node.className = "w-10 h-10 rounded-full bg-slate-800 border-4 border-[#0e1017] flex items-center justify-center text-slate-400 text-xs font-bold transition-transform";
         }
       }
 
-      // Update Details Box
       document.getElementById('stepDetailTitle').textContent = info.title;
       document.getElementById('stepDetailDesc').textContent = info.desc;
-      document.getElementById('stepCarrierCode').textContent = info.carrier;
-    }
-
-    function advanceActiveOrderStatus() {
-      let nextStep = currentTrackingStep + 1;
-      if (nextStep > 5) nextStep = 1;
-      setActiveStep(nextStep);
-      showToast(`Estado de orden actualizado: ${STEP_INFO[nextStep].title.split(':')[1]}`, 'info');
+      const carrierNum = activeTrackingOrder ? 'DHL-' + activeTrackingOrder.id.substring(0, 8).toUpperCase() : 'DHL-EXP-94812';
+      document.getElementById('stepCarrierCode').textContent = carrierNum;
     }
 
     // ========================================================
-    // ORDERS TABLE & BACKEND HISTORY
+    // ORDERS TABLE & SEGREGATION BY USER
     // ========================================================
     async function loadOrders() {
-      const tbody = document.getElementById('ordersTableBody');
       try {
-        const res = await fetch(ORDER_API + '/orders');
+        let url = ORDER_API + '/orders';
+        if (currentUser && currentUser.email) {
+          url += '?email=' + encodeURIComponent(currentUser.email);
+        }
+        const res = await fetch(url);
         if (res.ok) {
-          const orders = await res.json();
-          if (Array.isArray(orders) && orders.length > 0) {
-            renderOrdersTable(orders);
-            return;
+          const apiOrders = await res.json();
+          if (Array.isArray(apiOrders) && apiOrders.length > 0) {
+            // Merge with local orders
+            apiOrders.forEach(ao => {
+              const exists = ordersList.find(lo => lo.id === ao.id);
+              if (exists) {
+                exists.status = ao.status;
+              } else {
+                ordersList.unshift(ao);
+              }
+            });
+            localStorage.setItem('aura_orders_store', JSON.stringify(ordersList));
           }
         }
-      } catch (err) {
-        // Fallback demo orders
-      }
+      } catch (err) {}
 
-      // Default mock orders if none returned
-      renderOrdersTable([
-        {
-          id: "ORD-94812",
-          customerName: "Eduardo Developer",
-          customerEmail: "edu@apple-cloud.dev",
-          items: [{ productTitle: "M3 Pro Workstation", quantity: 1 }],
-          totalAmount: 2199.00,
-          status: "CONFIRMED"
-        },
-        {
-          id: "ORD-83741",
-          customerName: "Sarah Connor",
-          customerEmail: "sarah@cyberdyne.ai",
-          items: [{ productTitle: "Monitor Curvo 34\"", quantity: 1 }, { productTitle: "Teclado RGB", quantity: 1 }],
-          totalAmount: 828.50,
-          status: "SHIPPED"
-        },
-        {
-          id: "ORD-71930",
-          customerName: "Elon Tech",
-          customerEmail: "elon@space-ops.io",
-          items: [{ productTitle: "Auriculares Studio ANC", quantity: 2 }],
-          totalAmount: 559.98,
-          status: "DELIVERED"
-        }
-      ]);
+      renderOrdersTable();
     }
 
-    function renderOrdersTable(orders) {
+    function renderOrdersTable() {
       const tbody = document.getElementById('ordersTableBody');
       tbody.innerHTML = '';
 
-      orders.forEach(o => {
+      if (!currentUser) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="py-8 text-center text-slate-400">
+              <div class="mb-2">Inicia sesión para visualizar y rastrear tus compras</div>
+              <button onclick="toggleAuthModal(true)" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold">
+                Iniciar Sesión
+              </button>
+            </td>
+          </tr>
+        `;
+        document.getElementById('ordersFilterNotice').textContent = "Inicia sesión para ver tu historial de compras";
+        return;
+      }
+
+      // Filter strictly by the current user's email
+      const userOrders = ordersList.filter(o => 
+        o.customerEmail && o.customerEmail.toLowerCase() === currentUser.email.toLowerCase()
+      );
+
+      document.getElementById('ordersFilterNotice').textContent = `Mostrando ${userOrders.length} compra(s) de ${currentUser.name} (${currentUser.email})`;
+
+      if (userOrders.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="py-8 text-center text-slate-400">
+              No tienes pedidos registrados aún con esta cuenta.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      userOrders.forEach(o => {
         const tr = document.createElement('tr');
         tr.className = "hover:bg-white/[0.03] transition-colors cursor-pointer";
         tr.onclick = (e) => {
           if (e.target.tagName !== 'BUTTON') {
-            let step = 1;
-            if (o.status === 'SHIPPED') step = 4;
-            if (o.status === 'DELIVERED') step = 5;
-            setActiveTrackingOrder(o.id, step, o);
+            setActiveTrackingOrder(o.id);
             scrollToTracking();
           }
         };
 
-        const shortId = o.id ? (o.id.length > 12 ? o.id.substring(0, 10) + '...' : o.id) : 'ORD-???';
+        const shortId = o.id ? (o.id.length > 13 ? o.id.substring(0, 10) + '...' : o.id) : 'ORD-???';
         const totalFmt = (o.totalAmount || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         const itemsText = o.items ? o.items.map(i => `${i.productTitle} (x${i.quantity})`).join(', ') : 'Sin artículos';
 
         let badgeColor = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-        if (o.status === 'SHIPPED') badgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-        if (o.status === 'DELIVERED') badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+        let statusLabel = 'Confirmado';
+        if (o.status === 'PREPARING') {
+          badgeColor = 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+          statusLabel = 'En Preparación';
+        } else if (o.status === 'SHIPPED') {
+          badgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+          statusLabel = 'En Camino';
+        } else if (o.status === 'DELIVERED') {
+          badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+          statusLabel = 'Entregado';
+        }
 
         tr.innerHTML = `
           <td class="py-3 px-3.5 font-mono text-slate-300 font-medium" title="${o.id}">${shortId}</td>
           <td class="py-3 px-3.5">
             <div class="font-medium text-white">${o.customerName || 'Cliente'}</div>
-            <div class="text-[10px] text-slate-500">${o.customerEmail || ''}</div>
+            <div class="text-xs text-slate-400">${o.customerEmail || ''}</div>
           </td>
-          <td class="py-3 px-3.5 text-slate-300 text-[11px] max-w-xs truncate" title="${itemsText}">
+          <td class="py-3 px-3.5 text-slate-300 text-xs max-w-xs truncate" title="${itemsText}">
             ${itemsText}
           </td>
           <td class="py-3 px-3.5 text-right font-mono font-bold text-white">${totalFmt}</td>
           <td class="py-3 px-3.5 text-center">
             <span class="inline-flex px-2 py-0.5 rounded text-[10px] font-bold border ${badgeColor}">
-              ${o.status || 'CONFIRMED'}
+              ${statusLabel}
             </span>
           </td>
           <td class="py-3 px-3.5 text-right whitespace-nowrap">
             <button 
-              onclick="event.stopPropagation(); setActiveTrackingOrder('${o.id}', ${o.status === 'DELIVERED' ? 5 : (o.status === 'SHIPPED' ? 4 : 1)}); scrollToTracking();" 
-              class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] font-medium border border-white/5 transition-colors"
+              onclick="event.stopPropagation(); setActiveTrackingOrder('${o.id}'); scrollToTracking();" 
+              class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-white/10 transition-colors"
+              aria-label="Ver seguimiento en vivo de la orden ${shortId}"
             >
-              Ver Timeline
+              Rastrear
             </button>
           </td>
         `;
 
         tbody.appendChild(tr);
       });
-    }
 
-    // ========================================================
-    // TELEMETRY & HEALTH
-    // ========================================================
-    async function updateTelemetry() {
-      try {
-        const catRes = await fetch(CATALOG_API + '/telemetry');
-        if (catRes.ok) {
-          const cat = await catRes.json();
-          document.getElementById('statCacheHits').textContent = cat.cache_hits || 0;
-          document.getElementById('statMongoQueries').textContent = cat.mongo_queries || 0;
-        }
-        const ordRes = await fetch(ORDER_API + '/orders/stats');
-        if (ordRes.ok) {
-          const ord = await ordRes.json();
-          document.getElementById('statTotalOrders').textContent = ord.total_orders || 0;
-          const rev = ord.total_revenue || 0;
-          document.getElementById('statTotalRevenue').textContent = rev.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        }
-      } catch (err) {
-        // Mock realistic telemetry
-        document.getElementById('statCacheHits').textContent = "128";
-        document.getElementById('statMongoQueries').textContent = "14";
-        document.getElementById('statTotalOrders').textContent = "9";
-        document.getElementById('statTotalRevenue').textContent = "$14,890.00";
+      // Default active tracking to first user order if available
+      if (userOrders.length > 0 && (!activeTrackingOrder || activeTrackingOrder.customerEmail !== currentUser.email)) {
+        setActiveTrackingOrder(userOrders[0].id);
       }
     }
 
-    // ========================================================
-    // TOAST SYSTEM
-    // ========================================================
     function showToast(message, type = 'info') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
       
       let border = 'border-white/10';
-      if (type === 'success') {
-        border = 'border-emerald-500/40 text-emerald-200';
-      } else if (type === 'warn') {
-        border = 'border-amber-500/40 text-amber-200';
-      }
+      if (type === 'success') border = 'border-emerald-500/40 text-emerald-200';
+      else if (type === 'warn') border = 'border-amber-500/40 text-amber-200';
 
-      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-900/95 backdrop-blur-md border ${border} text-xs text-white shadow-2xl transition-all duration-300 transform translate-y-3 opacity-0`;
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-900 border ${border} text-xs text-white shadow-lg transition-all duration-300 transform translate-y-3 opacity-0`;
       toast.innerHTML = `
-        <span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : (type === 'warn' ? 'bg-amber-400' : 'bg-blue-400')}"></span>
+        <span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : (type === 'warn' ? 'bg-amber-400' : 'bg-blue-400')}" aria-hidden="true"></span>
         <span>${message}</span>
       `;
 
       container.appendChild(toast);
 
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-3', 'opacity-0');
-      });
+      requestAnimationFrame(() => toast.classList.remove('translate-y-3', 'opacity-0'));
 
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-3');
@@ -1749,15 +1903,12 @@
       document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // ========================================================
-    // INITIALIZATION
-    // ========================================================
+    // Initialization
     document.addEventListener('DOMContentLoaded', () => {
+      renderUserAccountWidget();
       loadCatalog();
       loadOrders();
-      updateTelemetry();
-      setActiveStep(1);
-      setInterval(updateTelemetry, 10000);
+      if (activeTrackingOrder) setActiveTrackingOrder(activeTrackingOrder.id);
     });
   </script>
 </body>

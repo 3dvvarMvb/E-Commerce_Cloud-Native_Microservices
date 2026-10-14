@@ -41,7 +41,10 @@ public class OrderController {
     }
 
     @GetMapping("/api/v1/orders")
-    public ResponseEntity<List<Order>> listOrders() {
+    public ResponseEntity<List<Order>> listOrders(@RequestParam(required = false) String email) {
+        if (email != null && !email.trim().isEmpty()) {
+            return ResponseEntity.ok(orderRepository.findByCustomerEmailIgnoreCaseOrderByCreatedAtDesc(email.trim()));
+        }
         return ResponseEntity.ok(orderRepository.findAllByOrderByCreatedAtDesc());
     }
 

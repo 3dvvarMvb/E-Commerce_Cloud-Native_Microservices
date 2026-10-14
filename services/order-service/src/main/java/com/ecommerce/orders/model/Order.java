@@ -35,7 +35,7 @@ public class Order {
     @Column(nullable = false)
     private Instant createdAt = Instant.now();
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<OrderItem> items = new ArrayList<>();
 
